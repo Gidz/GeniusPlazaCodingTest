@@ -7,12 +7,19 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView userListView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter userListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Initialize Recycler View
+        userListView = (RecyclerView) findViewById(R.id.user_list);
+        layoutManager = new LinearLayoutManager(this);
+
+        //TODO: Send in actual data instead of null
+        userListAdapter = new UserListAdapter(this, null);
+
+        //Set the adapter
+        userListView.setAdapter(userListAdapter);
+
+        //Use the linear layout manager
+        userListView.setLayoutManager(layoutManager);
     }
 
     @Override
