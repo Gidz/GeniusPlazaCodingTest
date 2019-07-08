@@ -49,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //Use to test with fake data
-        //displayRecyclerView(getFakeData());
-
         //Download the json data
         //Get the data from the API
         UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
@@ -70,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<JsonResponse> call, Throwable t) {
+                //Display an error snackbar
                 Snackbar mySnackbar = Snackbar.make(findViewById(R.id.main_coordinator_layout),
                         R.string.error_message, Snackbar.LENGTH_LONG);
                 mySnackbar.show();
@@ -84,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         userListView = (RecyclerView) findViewById(R.id.user_list);
         layoutManager = new LinearLayoutManager(this);
 
-        //TODO: Send in actual data instead of null
         userListAdapter = new UserListAdapter(this, userData);
 
         //Set the adapter
@@ -92,16 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Use the linear layout manager
         userListView.setLayoutManager(layoutManager);
-    }
-
-    private List<User> getFakeData()
-    {
-        List<User> userList = new ArrayList<User>();
-        userList.add(new User(0, "gidzpaul95@gmail.com", "Gideon", "Paul", "Duh"));
-        userList.add(new User(1, "dozwert@gmail.com", "Ritchie", "Shelson", "Don't Care"));
-        userList.add(new User(2, "rebekah@gmail.com", "Rebekah", "Paul", "Spice"));
-        userList.add(new User(3, "olivia@gmail.com", "Olivia", "Dozwert", "Sassy"));
-        return userList;
     }
 
     @Override
