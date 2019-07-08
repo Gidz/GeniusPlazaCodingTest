@@ -2,6 +2,7 @@ package com.example.geniusplazacodingtest;
 
 import android.os.Bundle;
 
+import com.example.geniusplazacodingtest.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,13 +46,23 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
 
         //TODO: Send in actual data instead of null
-        userListAdapter = new UserListAdapter(this, null);
+        userListAdapter = new UserListAdapter(this, getFakeData());
 
         //Set the adapter
         userListView.setAdapter(userListAdapter);
 
         //Use the linear layout manager
         userListView.setLayoutManager(layoutManager);
+    }
+
+    private List<User> getFakeData()
+    {
+        List<User> userList = new ArrayList<User>();
+        userList.add(new User(0, "gidzpaul95@gmail.com", "Gideon", "Paul", "Duh"));
+        userList.add(new User(1, "dozwert@gmail.com", "Ritchie", "Shelson", "Don't Care"));
+        userList.add(new User(2, "rebekah@gmail.com", "Rebekah", "Paul", "Spice"));
+        userList.add(new User(3, "olivia@gmail.com", "Olivia", "Dozwert", "Sassy"));
+        return userList;
     }
 
     @Override
