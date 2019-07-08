@@ -1,8 +1,11 @@
 package com.example.geniusplazacodingtest;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +15,6 @@ import com.example.geniusplazacodingtest.models.User;
 import java.util.List;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserListViewHolder>{
-
     //We'll need context to render images with glide library and stuff like that
     Context context;
 
@@ -28,12 +30,19 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     @NonNull
     @Override
     public UserListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        //Get the layout inflater
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        //Inflate the user item view
+        View view = layoutInflater.inflate(R.layout.user_item, parent, false);
+        //Return this view
+        return new UserListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserListViewHolder holder, int position) {
-
+        String fullName = userData.get(position).getFirst_name() +" "+userData.get(position).getLast_name();
+        holder.userName.setText(fullName);
+        //TODO: Display image with glide
     }
 
     @Override
@@ -42,8 +51,13 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     }
 
     public static class UserListViewHolder extends RecyclerView.ViewHolder{
+        TextView userName;
+        ImageView userImage;
+
         public UserListViewHolder(@NonNull View itemView) {
             super(itemView);
+            userName = itemView.findViewById(R.id.user_name);
+            userImage = itemView.findViewById(R.id.user_image);
         }
     }
 }
