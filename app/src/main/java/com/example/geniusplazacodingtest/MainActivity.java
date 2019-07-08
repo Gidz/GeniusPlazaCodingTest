@@ -2,6 +2,9 @@ package com.example.geniusplazacodingtest;
 
 import android.os.Bundle;
 
+import com.example.geniusplazacodingtest.api.RetrofitClient;
+import com.example.geniusplazacodingtest.api.UserAPI;
+import com.example.geniusplazacodingtest.models.JsonResponse;
 import com.example.geniusplazacodingtest.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,11 +21,16 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView userListView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter userListAdapter;
+    private JsonResponse jsonData;
 
 
     @Override
@@ -41,7 +49,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        displayRecyclerView(getFakeData());
+
+
+        //Use to test with fake data
+        //displayRecyclerView(getFakeData());
+
+        //Download the json data
+        //Get the data from the API
+        UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
+
+        Call<JsonResponse> call = service.getData();
+
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                //Display the recyvler with the downloaded data
+                //Make sure to pass in only user data and not the original json response
+                displayRecyclerView(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                Snackbar mySnackbar = Snackbar.make(findViewById(R.id.main_coordinator_layout),
+                        R.string.error_message, Snackbar.LENGTH_LONG);
+                mySnackbar.show();
+            }
+        });
+
     }
 
     private void displayRecyclerView(List<User> userData)

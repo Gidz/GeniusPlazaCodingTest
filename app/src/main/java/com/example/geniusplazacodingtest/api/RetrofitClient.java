@@ -9,7 +9,7 @@ public class RetrofitClient {
     //This the url where all calls will be made
     private static final String BASE_URL = "https://reqres.in/api/";
 
-    public Retrofit getRetrofitClient()
+    public static Retrofit getRetrofitClient()
     {
         //Create a client if it doesn't exist and return
         if(retrofitClient == null){
