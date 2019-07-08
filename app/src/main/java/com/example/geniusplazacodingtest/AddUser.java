@@ -43,7 +43,7 @@ public class AddUser extends AppCompatActivity {
         //Get the api client
         UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
 
-        //TODO: Make a post call
+        //Note : This is the most simplistic implementation
         service.addUser(email,first_name,last_name).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
