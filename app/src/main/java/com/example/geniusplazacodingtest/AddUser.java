@@ -1,4 +1,4 @@
-package com.example.geniusplazacodingtest.api;
+package com.example.geniusplazacodingtest;
 
 import androidx.appcompat.app.AppCompatActivity;
 

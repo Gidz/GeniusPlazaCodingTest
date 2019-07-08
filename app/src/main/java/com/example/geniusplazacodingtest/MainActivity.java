@@ -1,5 +1,6 @@
 package com.example.geniusplazacodingtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.geniusplazacodingtest.api.RetrofitClient;
@@ -18,7 +19,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Launch CreateUser Activity when this button is clicked
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Launch CreateUser Activity
+                Intent i = new Intent(view.getContext(), AddUser.class);
+                startActivity(i);
             }
         });
 
