@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.geniusplazacodingtest.models.User;
 
 import java.util.List;
@@ -42,7 +43,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     public void onBindViewHolder(@NonNull UserListViewHolder holder, int position) {
         String fullName = userData.get(position).getFirst_name() +" "+userData.get(position).getLast_name();
         holder.userName.setText(fullName);
-        //TODO: Display image with glide
+        //Display image with glide
+        Glide.with(context).load(userData.get(position).getAvatar()).override(150,150).into(holder.userImage);
+
     }
 
     @Override
