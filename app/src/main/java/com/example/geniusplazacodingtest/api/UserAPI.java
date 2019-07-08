@@ -20,7 +20,6 @@ public interface UserAPI {
     Call<User> addUser(
             @Field("email") String email,
             @Field("first_name") String first_name,
-            @Field("last_name") String last_name,
-            @Field("email") String avatar
+            @Field("last_name") String last_name
     );
 }
