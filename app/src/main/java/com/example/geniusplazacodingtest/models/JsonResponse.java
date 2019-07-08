@@ -2,15 +2,27 @@ package com.example.geniusplazacodingtest.models;
 
 //This is the model for actual JSON response
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 //This is the format in which we will receive a JSON response.
 
 public class JsonResponse {
+
+    @SerializedName("page")
     private String page;
+
+    @SerializedName("per_page")
     private String per_page;
+
+    @SerializedName("total")
     private String total;
+
+    @SerializedName("total_pages")
     private String total_pages;
+
+    @SerializedName("data")
     private ArrayList<User> data;
 
     public JsonResponse(String page, String per_page, String total, String total_pages, ArrayList<User> data) {
