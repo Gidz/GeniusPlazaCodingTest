@@ -41,12 +41,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        displayRecyclerView(getFakeData());
+    }
+
+    private void displayRecyclerView(List<User> userData)
+    {
         //Initialize Recycler View
         userListView = (RecyclerView) findViewById(R.id.user_list);
         layoutManager = new LinearLayoutManager(this);
 
         //TODO: Send in actual data instead of null
-        userListAdapter = new UserListAdapter(this, getFakeData());
+        userListAdapter = new UserListAdapter(this, userData);
 
         //Set the adapter
         userListView.setAdapter(userListAdapter);
