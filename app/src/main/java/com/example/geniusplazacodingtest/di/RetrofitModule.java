@@ -15,7 +15,7 @@ public class RetrofitModule {
     public Retrofit provideRetrofit(GsonConverterFactory gsonConverterFactory, RxJava2CallAdapterFactory rxJava2CallAdapterFactory)
     {
         Retrofit client;
-        String BASE_URL = "https://api.darksky.net/";
+        String BASE_URL = "https://reqres.in/api/";
 
         client = new retrofit2.Retrofit.Builder()
                 .baseUrl(BASE_URL)

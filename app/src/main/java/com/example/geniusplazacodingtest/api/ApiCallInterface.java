@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiCallInterface {
+
     //Response for users will be a of JsonResponse model type.
     @GET("users")
     Observable<JsonResponse> getData();

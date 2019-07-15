@@ -15,14 +15,19 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private JsonResponse jsonData;
 
     private MainActivityViewModel mainActivityViewModel;
+
+    private MutableLiveData<ArrayList<User>> userDataMutableLiveData;
+
+    private static String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,36 +65,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Create a view model
-        //Bind the view model
+        Log.e(TAG,"Created activity");
+
+        //Create and bind a view model
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
-        //Download the json data
-        //Get the data from the API
-        ApiCallInterface service = RetrofitClient.getRetrofitClient().create(ApiCallInterface.class);
+        userDataMutableLiveData = mainActivityViewModel.getUserDataMutableLiveData();
 
-        Call<JsonResponse> call = service.getData();
 
-        call.enqueue(new Callback<JsonResponse>() {
+        userDataMutableLiveData.observe(this, new Observer<ArrayList<User>>() {
             @Override
-            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                //Display the recyvler with the downloaded data
-                //Make sure to pass in only user data and not the original json response
-                displayRecyclerView(response.body().getData());
-            }
-
-            @Override
-            public void onFailure(Call<JsonResponse> call, Throwable t) {
-                //Display an error snackbar
-                Snackbar mySnackbar = Snackbar.make(findViewById(R.id.main_coordinator_layout),
-                        R.string.error_message, Snackbar.LENGTH_LONG);
-                mySnackbar.show();
+            public void onChanged(ArrayList<User> users) {
+                displayRecyclerView(users);
             }
         });
-
     }
 
-    private void displayRecyclerView(List<User> userData)
+    private void displayRecyclerView(ArrayList<User> userData)
     {
         //Initialize Recycler View
         userListView = (RecyclerView) findViewById(R.id.user_list);

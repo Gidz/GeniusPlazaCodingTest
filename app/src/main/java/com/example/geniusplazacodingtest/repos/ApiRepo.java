@@ -1,5 +1,7 @@
 package com.example.geniusplazacodingtest.repos;
 
+import android.util.Log;
+
 import com.example.geniusplazacodingtest.api.ApiCallInterface;
 import com.example.geniusplazacodingtest.di.ApiCallInterfaceComponent;
 import com.example.geniusplazacodingtest.di.DaggerApiCallInterfaceComponent;
@@ -14,6 +16,8 @@ import retrofit2.Response;
 
 public class ApiRepo {
 
+    private static String TAG = "ApiRepo";
+
 
     ApiCallInterfaceComponent apiCallInterfaceComponent;
     ApiCallInterface service;
@@ -26,7 +30,7 @@ public class ApiRepo {
         apiCallInterfaceComponent = DaggerApiCallInterfaceComponent.create();
         service = apiCallInterfaceComponent.getApiCallInterface();
         jsonResponseObservable = service.getData().subscribeOn(Schedulers.io());
-
+        Log.e(TAG,"Repo created and observable created");
     }
 
     //Getters
