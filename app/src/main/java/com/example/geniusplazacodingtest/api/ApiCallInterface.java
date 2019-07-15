@@ -3,6 +3,7 @@ package com.example.geniusplazacodingtest.api;
 import com.example.geniusplazacodingtest.models.JsonResponse;
 import com.example.geniusplazacodingtest.models.User;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
