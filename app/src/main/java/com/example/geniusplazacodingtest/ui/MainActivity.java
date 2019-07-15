@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //Create a view model
         //Bind the view model
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        
+
         //Download the json data
         //Get the data from the API
         UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
