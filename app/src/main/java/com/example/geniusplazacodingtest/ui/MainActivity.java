@@ -1,8 +1,9 @@
-package com.example.geniusplazacodingtest;
+package com.example.geniusplazacodingtest.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.adapters.UserListAdapter;
 import com.example.geniusplazacodingtest.api.RetrofitClient;
 import com.example.geniusplazacodingtest.api.UserAPI;
@@ -14,7 +15,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
