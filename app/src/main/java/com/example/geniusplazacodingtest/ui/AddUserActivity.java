@@ -6,22 +6,30 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.api.ApiCallInterface;
 import com.example.geniusplazacodingtest.api.RetrofitClient;
 import com.example.geniusplazacodingtest.models.User;
+import com.example.geniusplazacodingtest.viewmodels.AddUserActivityViewModel;
+import com.example.geniusplazacodingtest.viewmodels.MainActivityViewModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddUser extends AppCompatActivity {
+public class AddUserActivity extends AppCompatActivity {
+
+    private AddUserActivityViewModel addUserActivityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        //Create and bind a view model
+        addUserActivityViewModel = ViewModelProviders.of(this).get(AddUserActivityViewModel.class);
     }
 
     //Creates user

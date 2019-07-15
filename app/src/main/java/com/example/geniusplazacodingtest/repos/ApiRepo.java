@@ -26,7 +26,6 @@ public class ApiRepo {
         apiCallInterfaceComponent = DaggerApiCallInterfaceComponent.create();
         service = apiCallInterfaceComponent.getApiCallInterface();
         jsonResponseObservable = service.getData().subscribeOn(Schedulers.io());
-        Log.e(TAG,"Repo created and observable created");
     }
 
     //Getters
