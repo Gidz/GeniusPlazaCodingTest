@@ -18,7 +18,7 @@ public interface ApiCallInterface {
 
     @POST("users")
     @FormUrlEncoded
-    Call<User> addUser(
+    Observable<User> addUser(
             @Field("email") String email,
             @Field("first_name") String first_name,
             @Field("last_name") String last_name

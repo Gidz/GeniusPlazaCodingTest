@@ -43,9 +43,6 @@ public class MainActivityViewModel extends ViewModel {
         //Subscribe
         jsonResponseObservable.subscribe(jsonResponseObserver);
         /* End RxJava Subscription */
-
-        Log.e(TAG, "Created view model");
-
     }
 
     private Observer<JsonResponse> createAndGetObserver() {
@@ -58,7 +55,6 @@ public class MainActivityViewModel extends ViewModel {
             @Override
             public void onNext(JsonResponse jsonResponse) {
                 userDataMutableLiveData.postValue(jsonResponse.getData());
-                Log.e(TAG,"Got the data!");
             }
 
             @Override

@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.e(TAG,"Created activity");
-
         //Create and bind a view model
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 

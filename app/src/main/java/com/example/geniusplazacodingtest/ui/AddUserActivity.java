@@ -1,6 +1,7 @@
 package com.example.geniusplazacodingtest.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,18 +11,22 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.api.ApiCallInterface;
-import com.example.geniusplazacodingtest.api.RetrofitClient;
+import com.example.geniusplazacodingtest.di.ApiCallInterfaceComponent;
+import com.example.geniusplazacodingtest.di.DaggerApiCallInterfaceComponent;
 import com.example.geniusplazacodingtest.models.User;
 import com.example.geniusplazacodingtest.viewmodels.AddUserActivityViewModel;
-import com.example.geniusplazacodingtest.viewmodels.MainActivityViewModel;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class AddUserActivity extends AppCompatActivity {
 
     private AddUserActivityViewModel addUserActivityViewModel;
+
+    ApiCallInterfaceComponent apiCallInterfaceComponent;
+    ApiCallInterface service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +52,32 @@ public class AddUserActivity extends AppCompatActivity {
         String email = email_edit_text.getText().toString().trim();
 
         //Get the api client
-        ApiCallInterface service = RetrofitClient.getRetrofitClient().create(ApiCallInterface.class);
+        apiCallInterfaceComponent = DaggerApiCallInterfaceComponent.create();
+        service = apiCallInterfaceComponent.getApiCallInterface();
 
-        //Note : This is the most simplistic implementation
-        service.addUser(email,first_name,last_name).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(getApplicationContext(), R.string.user_added, Toast.LENGTH_LONG).show();
-            }
+        service.addUser(email, first_name, last_name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), R.string.error_message, Toast.LENGTH_LONG).show();
-            }
-        });
+                    }
 
+                    @Override
+                    public void onNext(User user) {
+                        Toast.makeText(getApplicationContext(), R.string.user_added, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getApplicationContext(), R.string.error_message, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

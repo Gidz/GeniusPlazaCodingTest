@@ -10,6 +10,7 @@ import com.example.geniusplazacodingtest.models.JsonResponse;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
+//TODO: Make Repo clean and move the implementation code to a separate class
 public class ApiRepo {
 
     private static String TAG = "ApiRepo";
