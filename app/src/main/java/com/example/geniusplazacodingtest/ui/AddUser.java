@@ -29,9 +29,9 @@ public class AddUser extends AppCompatActivity {
 
         //Extract the text from the view
         //By deafault, they'll be empty Strings
-        EditText first_name_edit_text = (EditText) findViewById(R.id.first_name);
-        EditText last_name_edit_text = (EditText) findViewById(R.id.last_name);
-        EditText email_edit_text = (EditText) findViewById(R.id.email);
+        EditText first_name_edit_text = findViewById(R.id.first_name);
+        EditText last_name_edit_text = findViewById(R.id.last_name);
+        EditText email_edit_text = findViewById(R.id.email);
 
         //Extarct the texts from the view
         String first_name = first_name_edit_text.getText().toString().trim();

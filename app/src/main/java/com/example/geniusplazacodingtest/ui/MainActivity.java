@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayRecyclerView(ArrayList<User> userData)
     {
         //Initialize Recycler View
-        userListView = (RecyclerView) findViewById(R.id.user_list);
+        userListView = findViewById(R.id.user_list);
         layoutManager = new LinearLayoutManager(this);
 
         userListAdapter = new UserListAdapter(this, userData);
@@ -95,5 +95,5 @@ public class MainActivity extends AppCompatActivity {
         //Use the linear layout manager
         userListView.setLayoutManager(layoutManager);
     }
-    
+
 }
