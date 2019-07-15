@@ -1,4 +1,4 @@
-package com.example.geniusplazacodingtest;
+package com.example.geniusplazacodingtest.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.models.User;
 
 import java.util.List;

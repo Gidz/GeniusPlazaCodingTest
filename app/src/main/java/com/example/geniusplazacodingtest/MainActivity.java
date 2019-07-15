@@ -3,15 +3,19 @@ package com.example.geniusplazacodingtest;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.geniusplazacodingtest.adapters.UserListAdapter;
 import com.example.geniusplazacodingtest.api.RetrofitClient;
 import com.example.geniusplazacodingtest.api.UserAPI;
 import com.example.geniusplazacodingtest.models.JsonResponse;
 import com.example.geniusplazacodingtest.models.User;
+import com.example.geniusplazacodingtest.viewmodels.MainActivityViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter userListAdapter;
     private JsonResponse jsonData;
 
+    private MainActivityViewModel mainActivityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Create a view model
+        //Bind the view model
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        
         //Download the json data
         //Get the data from the API
         UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
