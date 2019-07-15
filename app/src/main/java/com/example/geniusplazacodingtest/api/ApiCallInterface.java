@@ -9,7 +9,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface UserAPI {
+public interface ApiCallInterface {
     //Response for users will be a of JsonResponse model type.
     @GET("users")
     Call<JsonResponse> getData();

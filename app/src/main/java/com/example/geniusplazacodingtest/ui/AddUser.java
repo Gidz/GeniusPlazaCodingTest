@@ -3,16 +3,14 @@ package com.example.geniusplazacodingtest.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.api.RetrofitClient;
-import com.example.geniusplazacodingtest.api.UserAPI;
+import com.example.geniusplazacodingtest.api.ApiCallInterface;
 import com.example.geniusplazacodingtest.models.User;
-import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +39,7 @@ public class AddUser extends AppCompatActivity {
         String email = email_edit_text.getText().toString().trim();
 
         //Get the api client
-        UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
+        ApiCallInterface service = RetrofitClient.getRetrofitClient().create(ApiCallInterface.class);
 
         //Note : This is the most simplistic implementation
         service.addUser(email,first_name,last_name).enqueue(new Callback<User>() {

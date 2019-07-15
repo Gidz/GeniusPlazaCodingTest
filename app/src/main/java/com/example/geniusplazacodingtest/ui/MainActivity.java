@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.geniusplazacodingtest.R;
 import com.example.geniusplazacodingtest.adapters.UserListAdapter;
 import com.example.geniusplazacodingtest.api.RetrofitClient;
-import com.example.geniusplazacodingtest.api.UserAPI;
+import com.example.geniusplazacodingtest.api.ApiCallInterface;
 import com.example.geniusplazacodingtest.models.JsonResponse;
 import com.example.geniusplazacodingtest.models.User;
 import com.example.geniusplazacodingtest.viewmodels.MainActivityViewModel;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Download the json data
         //Get the data from the API
-        UserAPI service = RetrofitClient.getRetrofitClient().create(UserAPI.class);
+        ApiCallInterface service = RetrofitClient.getRetrofitClient().create(ApiCallInterface.class);
 
         Call<JsonResponse> call = service.getData();
 
