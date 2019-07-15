@@ -18,7 +18,6 @@ public interface ApiCallInterface {
 
     @POST("users")
     @FormUrlEncoded
-
     Call<User> addUser(
             @Field("email") String email,
             @Field("first_name") String first_name,
