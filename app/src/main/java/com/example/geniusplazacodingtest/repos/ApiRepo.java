@@ -7,12 +7,8 @@ import com.example.geniusplazacodingtest.di.ApiCallInterfaceComponent;
 import com.example.geniusplazacodingtest.di.DaggerApiCallInterfaceComponent;
 import com.example.geniusplazacodingtest.models.JsonResponse;
 
-
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ApiRepo {
 

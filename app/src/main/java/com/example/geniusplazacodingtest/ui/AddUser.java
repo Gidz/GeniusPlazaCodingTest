@@ -1,15 +1,15 @@
 package com.example.geniusplazacodingtest.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.geniusplazacodingtest.R;
-import com.example.geniusplazacodingtest.api.RetrofitClient;
 import com.example.geniusplazacodingtest.api.ApiCallInterface;
+import com.example.geniusplazacodingtest.api.RetrofitClient;
 import com.example.geniusplazacodingtest.models.User;
 
 import retrofit2.Call;
